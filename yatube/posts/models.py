@@ -10,8 +10,10 @@ class Group(models.Model):
     slug = models.SlugField(unique=True)
     description = models.TextField()
 
+
 def __str__(self):
-        return self.title
+    return self.title
+
 
 class Post(models.Model):
     text = models.TextField()
@@ -27,4 +29,4 @@ class Post(models.Model):
         blank=True,
         null=True,
         on_delete=models.CASCADE
-        )
+    )
