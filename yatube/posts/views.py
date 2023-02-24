@@ -11,10 +11,9 @@ def index(request):
     text = 'Последние обновления на сайте'
     posts = Post.objects.order_by('-pub_date')[:10]
     context = {
-        'posts' : posts,
-        'title' : title,
-        'text' : text
-        }
+        'posts': posts,
+        'title': title,
+        'text': text}
     return render(request, template, context)
 
 
@@ -26,8 +25,7 @@ def group_posts(request, slug):
 
     text = 'Здесь будет информация о группах проекта YaTube'
     context = {
-        'group' : group,
+        'group': group,
         'posts': posts,
-        'text' : text
-        }
+        'text': text}
     return render(request, template, context)
