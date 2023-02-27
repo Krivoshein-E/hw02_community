@@ -17,7 +17,7 @@ class GroupAdmin(admin.ModelAdmin):
     search_fields = ('description',)
     list_filter = ('title',)
     empty_value_display = '-пусто-'
-    prepopulated_fields = {"slug": ("title",)}
+    prepopulated_fields = {'slug': ('title',)}
 
 
 admin.site.register(Post, PostAdmin)

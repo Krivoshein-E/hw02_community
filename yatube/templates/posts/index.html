@@ -2,27 +2,27 @@
 {% block title %}
   Главная страница
 {%endblock%}
-  {% block content %}
-    <h1>Главная страница</h1>
-      {% for post in posts %}
-      <article>
-        <ul>
-          <li>
-            Автор: {{ post.author.get_full_name }}
-          </li>
-          <li>
-            Дата публикации: {{ post.pub_date|date:"d E Y" }}
-          </li>
-        </ul>
-        <p>
-          {{ post.text }}
-        </p>
-        {% if post.group %} 
-          <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы, {{ post.group.title }}</a>
-        {% endif %}
-      {% endfor %} 
-      </article>
-  {% endblock %}
+{% block content %}
+  <h1>Главная страница</h1>
+  {% for post in posts %}
+    <article>
+      <ul>
+        <li>
+          Автор: {{ post.author.get_full_name }}
+        </li>
+        <li>
+          Дата публикации: {{ post.pub_date|date:"d E Y" }}
+        </li>
+      </ul>
+      <p>
+        {{ post.text|linebreaksbr }}
+      </p>
+      {% if post.group %} 
+        <a href="{% url 'posts:group_list' post.group.slug %}">#{{ post.group.title }}</a>
+      {% endif %}
+    </article>
+  {% endfor %} 
+{% endblock %}
     
          
   
