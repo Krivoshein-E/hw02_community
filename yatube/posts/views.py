@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 
-from .models import Post, Group
+from .models import Post, Group, User
+
+import datetime
 
 
 def index(request):
@@ -9,6 +11,16 @@ def index(request):
     context = {
         'posts': posts
     }
+    start_date = datetime.date(1854, 7, 7)
+    end_date = datetime.date(1854, 7, 21)
+
+    author = User.objects.get(username="leo")
+    keyword = "утро"
+    posts = Post.objects.filter(
+        pub_date__range=(start_date, end_date),
+        text__contains=keyword, author=author
+    )
+
     return render(request, template, context)
 
 
