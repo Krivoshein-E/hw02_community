@@ -4,7 +4,7 @@
 {%endblock%}
 {% block content %}
   <h1>Главная страница</h1>
-  {% for post in posts %}
+  {% for post in page_obj %}
     <article>
       <ul>
         <li>
@@ -21,7 +21,8 @@
         <a href="{% url 'posts:group_list' post.group.slug %}">#{{ post.group.title }}</a>
       {% endif %}
     </article>
-  {% endfor %} 
+  {% endfor %}
+  {% include 'posts/includes/paginator.html' %} 
 {% endblock %}
     
          
