@@ -42,3 +42,29 @@ def group_posts(request, slug):
         'page_obj': page_obj,
     }
     return render(request, template, context)
+
+
+def profile(request, username):
+    template = 'posts/profile.html'
+    author = get_object_or_404(User, username=username)
+    posts = Post.objects.filter(author=author)
+    paginator = Paginator(author.posts.all(), 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'author': author,
+        'posts': posts,
+        'page_number': page_number,
+        'page_obj': page_obj,
+    }
+    return render(request, template, context)
+
+
+def post_detail(request, post_id):
+    template = 'posts/post_detail.html'
+    post = get_object_or_404(Post, id=post_id)
+    context = {
+        'post': post,
+        'post_title': post.text
+    }
+    return render(request, template, context)
